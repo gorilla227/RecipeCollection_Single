@@ -24,3 +24,9 @@ class Flavor: NSManagedObject {
         self.name = name
     }
 }
+
+extension Flavor {
+    struct Keys {
+        static let Name = "name"
+    }
+}

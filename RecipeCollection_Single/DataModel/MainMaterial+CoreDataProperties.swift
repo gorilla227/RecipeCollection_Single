@@ -1,5 +1,5 @@
 //
-//  Flavor+CoreDataProperties.swift
+//  MainMaterial+CoreDataProperties.swift
 //  RecipeCollection_Single
 //
 //  Created by Andy Xu on 7/1/16.
@@ -12,8 +12,11 @@
 import Foundation
 import CoreData
 
-extension Flavor {
+extension MainMaterial {
 
     @NSManaged var name: String?
-
+    @NSManaged var quantity: NSNumber?
+    @NSManaged var unit: String?
+    @NSManaged var recipe: Recipe?
+    
 }

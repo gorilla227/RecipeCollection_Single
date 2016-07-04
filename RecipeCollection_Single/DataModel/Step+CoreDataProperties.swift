@@ -2,7 +2,7 @@
 //  Step+CoreDataProperties.swift
 //  RecipeCollection_Single
 //
-//  Created by Andy on 16/6/25.
+//  Created by Andy on 16/7/3.
 //  Copyright © 2016年 Andy Xu. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu

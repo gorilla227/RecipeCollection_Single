@@ -39,13 +39,20 @@ class Recipe: NSManagedObject {
         if let tip = dictionary[Keys.Tips] as? String {
             tips = tip
         }
-        // TODO: materials
         
+        if let mainMaterialsArray = dictionary[Keys.MainMaterials] as? [MainMaterial] {
+            mainMaterials = NSSet(array: mainMaterialsArray)
+        }
+        if let auxiliaryMaterialsArray = dictionary[Keys.AuxiliaryMaterials] as? [AuxiliaryMaterial] {
+            auxiliaryMaterials = NSSet(array: auxiliaryMaterialsArray)
+        }
         category = dictionary[Keys.Category] as? Category
         difficulty = dictionary[Keys.Difficulty] as? Difficulty
         flavor = dictionary[Keys.Flavor] as? Flavor
         
-        // TODO: STEPS
+        if let stepsArray = dictionary[Keys.Steps] as? [Step] {
+            steps = NSOrderedSet(array: stepsArray)
+        }
     }
 }
 

@@ -24,3 +24,9 @@ class Category: NSManagedObject {
         self.name = name
     }
 }
+
+extension Category {
+    struct Keys {
+        static let Name = "name"
+    }
+}
