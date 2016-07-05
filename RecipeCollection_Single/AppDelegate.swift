@@ -93,6 +93,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Returns the managed object context for the application (which is already bound to the persistent store coordinator for the application.) This property is optional since there are legitimate error conditions that could cause the creation of the context to fail.
         var managedObjectContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
         managedObjectContext.parentContext = self.backgroundSaveManagedObjectContext
+        print("MainMOC: \(managedObjectContext)")
         return managedObjectContext
     }()
     
@@ -100,16 +101,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let coordinator = self.persistentStoreCoordinator
         var managedObjectContext = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
         managedObjectContext.persistentStoreCoordinator = coordinator
+        print("BackgroundMOC: \(managedObjectContext)")
         return managedObjectContext
     }()
 
     // MARK: - Core Data Saving support
 
     func saveContext(moc: NSManagedObjectContext) {
-        print("SaveContext: \(moc)")
         moc.performBlock {
             if moc.hasChanges {
                 do {
+                    print("SaveContext: \(moc)")
                     try moc.save()
                 } catch {
                     // Replace this implementation with code to handle the error appropriately.

@@ -38,17 +38,17 @@ extension AppDelegate: NSFetchedResultsControllerDelegate {
             for (name, entityDescription) in entitiesByName {
                 let fetchRequest = NSFetchRequest(entityName: name)
                 do {
-                    let fetchResult = try backgroundSaveManagedObjectContext.executeFetchRequest(fetchRequest) as! [NSManagedObject]
+                    let fetchResult = try mainManagedObjectContext.executeFetchRequest(fetchRequest) as! [NSManagedObject]
                     print("ClearData: \(name): \(fetchResult.count)")
                     for result in fetchResult {
-                        backgroundSaveManagedObjectContext.deleteObject(result)
+                        mainManagedObjectContext.deleteObject(result)
                     }
                 } catch {
                     print("ClearData: Fetch result \(name) failed")
                     return
                 }
             }
-            saveContext(backgroundSaveManagedObjectContext)
+            saveContext(mainManagedObjectContext)
         }
     }
     
@@ -164,6 +164,7 @@ extension AppDelegate: NSFetchedResultsControllerDelegate {
     }
     
     func mergeToMainManagedObjectContext(notification: NSNotification) {
+        print("Merger notification to MainManagedObjectContext")
         mainManagedObjectContext.mergeChangesFromContextDidSaveNotification(notification)
     }
     
