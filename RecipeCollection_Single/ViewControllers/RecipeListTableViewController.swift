@@ -58,7 +58,6 @@ class RecipeListTableViewController: UITableViewController {
     }
 
 
-
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
@@ -77,6 +76,17 @@ class RecipeListTableViewController: UITableViewController {
         }
     }
 
+    // Navigation Segue
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "ShowRecipe" {
+            if let selectedCell = sender as? UITableViewCell {
+                if let indextPath = tableView.indexPathForCell(selectedCell) {
+                    let detailVC = segue.destinationViewController as! RecipeDetailTableViewController
+                    detailVC.recipe = fetchedResultsController.objectAtIndexPath(indextPath) as? Recipe
+                }
+            }
+        }
+    }
 }
 
 extension RecipeListTableViewController: NSFetchedResultsControllerDelegate {

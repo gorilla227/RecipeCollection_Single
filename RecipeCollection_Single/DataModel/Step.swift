@@ -22,7 +22,6 @@ class Step: NSManagedObject {
         super.init(entity: entity, insertIntoManagedObjectContext: context)
         
         stepID = dictionary[Keys.StepID] as? NSNumber
-        title = dictionary[Keys.Title] as? String
         detail = dictionary[Keys.Detail] as? String
         if let imageData = dictionary[Keys.Image] as? NSData {
             image = imageData
@@ -38,7 +37,6 @@ extension Step {
         static let Detail = "detail"
         static let Image = "image"
         static let StepID = "stepID"
-        static let Title = "title"
         static let Recipe = "recipe"
     }
 }

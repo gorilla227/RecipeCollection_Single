@@ -44,7 +44,6 @@
         <attribute name="detail" attributeType="String" syncable="YES"/>
         <attribute name="image" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" storedInTruthFile="YES" syncable="YES"/>
         <attribute name="stepID" attributeType="Integer 64" minValueString="1" defaultValueString="1" indexed="YES" syncable="YES"/>
-        <attribute name="title" attributeType="String" syncable="YES"/>
         <relationship name="recipe" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Recipe" inverseName="steps" inverseEntity="Recipe" syncable="YES"/>
     </entity>
     <elements>
@@ -54,6 +53,6 @@
         <element name="Flavor" positionX="8107" positionY="2583" width="128" height="60"/>
         <element name="MainMaterial" positionX="8514" positionY="2853" width="128" height="103"/>
         <element name="Recipe" positionX="8341" positionY="2520" width="128" height="285"/>
-        <element name="Step" positionX="8118" positionY="2843" width="128" height="120"/>
+        <element name="Step" positionX="8118" positionY="2843" width="128" height="105"/>
     </elements>
 </model>

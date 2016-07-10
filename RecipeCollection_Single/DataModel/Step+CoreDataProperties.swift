@@ -17,7 +17,6 @@ extension Step {
     @NSManaged var detail: String?
     @NSManaged var image: NSData?
     @NSManaged var stepID: NSNumber?
-    @NSManaged var title: String?
     @NSManaged var recipe: Recipe?
 
 }

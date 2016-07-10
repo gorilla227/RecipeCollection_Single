@@ -97,7 +97,9 @@ extension AppDelegate: NSFetchedResultsControllerDelegate {
         // Difficulties
         let difficulties = [[Difficulty.Keys.Level: NSNumber(integer: 1), Difficulty.Keys.Name: "Easy"],
                             [Difficulty.Keys.Level: NSNumber(integer: 2), Difficulty.Keys.Name: "Medium"],
-                            [Difficulty.Keys.Level: NSNumber(integer: 3), Difficulty.Keys.Name: "Hard"]]
+                            [Difficulty.Keys.Level: NSNumber(integer: 3), Difficulty.Keys.Name: "Hard"],
+                            [Difficulty.Keys.Level: NSNumber(integer: 4), Difficulty.Keys.Name: "Very Hard"],
+                            [Difficulty.Keys.Level: NSNumber(integer: 5), Difficulty.Keys.Name: "Master"]]
         var ds = [Difficulty]()
         for difficultyDict in difficulties {
             let difficulty = Difficulty(dictionary: difficultyDict, context: privateMOC)
@@ -123,8 +125,8 @@ extension AppDelegate: NSFetchedResultsControllerDelegate {
         }
         
         // Steps
-        let steps = [[Step.Keys.StepID: NSNumber(integer: 1), Step.Keys.Title: "Step1 Title", Step.Keys.Detail: "Step1 Detail"],
-                     [Step.Keys.StepID: NSNumber(integer: 2), Step.Keys.Title: "Step2 Title", Step.Keys.Detail: "Step2 Detail"]]
+        let steps = [[Step.Keys.StepID: NSNumber(integer: 1), Step.Keys.Detail: "Step1 Detail"],
+                     [Step.Keys.StepID: NSNumber(integer: 2), Step.Keys.Detail: "Step2 Detail"]]
         var ss = [Step]()
         for step in steps {
             let s = Step(dictionary: step, context: privateMOC)
@@ -136,14 +138,14 @@ extension AppDelegate: NSFetchedResultsControllerDelegate {
             Recipe.Keys.Name: "My first Recipe",
             Recipe.Keys.CookingTime: "10 mins",
             Recipe.Keys.CreationDate: NSDate(),
-            Recipe.Keys.DetailDescription: "Detail Description",
+            Recipe.Keys.DetailDescription: "Detail DescriptionDetail DescriptionDetail DescriptionDetail DescriptionDetail DescriptionDetail DescriptionDetail DescriptionDetail Description",
             Recipe.Keys.ForPersons: NSNumber(integer: 2),
             Recipe.Keys.Subtitle: "SUB TITLE",
             Recipe.Keys.Tips: "TIPS",
             Recipe.Keys.AuxiliaryMaterials: ams,
             Recipe.Keys.MainMaterials: mms,
             Recipe.Keys.Category: cs.first!,
-            Recipe.Keys.Difficulty: ds.first!,
+            Recipe.Keys.Difficulty: ds[1],
             Recipe.Keys.Flavor: fs.first!,
             Recipe.Keys.Steps: ss
         ]

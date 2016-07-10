@@ -20,6 +20,9 @@
 		A1E4E9161D1F5CA10019F92C /* Step.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E4E90A1D1F5CA10019F92C /* Step.swift */; };
 		A1E4E91E1D1F60AA0019F92C /* Difficulty+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E4E91D1D1F60AA0019F92C /* Difficulty+CoreDataProperties.swift */; };
 		A1E4E9201D1F60C50019F92C /* Difficulty.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E4E91F1D1F60C50019F92C /* Difficulty.swift */; };
+		B20C336C1D2DAC0D000B2219 /* RecipeDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20C336B1D2DAC0D000B2219 /* RecipeDetailTableViewController.swift */; };
+		B20C33741D2DADD1000B2219 /* RecipeDetail_StepCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20C33731D2DADD1000B2219 /* RecipeDetail_StepCell.swift */; };
+		B20C33761D2DCF51000B2219 /* RecipeDetail_SummaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20C33751D2DCF51000B2219 /* RecipeDetail_SummaryCell.swift */; };
 		B224D2431D27388500FE9768 /* AuxiliaryMaterial+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B224D2411D27388500FE9768 /* AuxiliaryMaterial+CoreDataProperties.swift */; };
 		B224D2441D27388500FE9768 /* AuxiliaryMaterial.swift in Sources */ = {isa = PBXBuildFile; fileRef = B224D2421D27388500FE9768 /* AuxiliaryMaterial.swift */; };
 		B224D24B1D273A9E00FE9768 /* MainMaterial+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B224D2491D273A9E00FE9768 /* MainMaterial+CoreDataProperties.swift */; };
@@ -45,6 +48,9 @@
 		A1E4E90A1D1F5CA10019F92C /* Step.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Step.swift; path = DataModel/Step.swift; sourceTree = "<group>"; };
 		A1E4E91D1D1F60AA0019F92C /* Difficulty+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Difficulty+CoreDataProperties.swift"; path = "DataModel/Difficulty+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		A1E4E91F1D1F60C50019F92C /* Difficulty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Difficulty.swift; path = DataModel/Difficulty.swift; sourceTree = "<group>"; };
+		B20C336B1D2DAC0D000B2219 /* RecipeDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecipeDetailTableViewController.swift; path = ViewControllers/RecipeDetailTableViewController.swift; sourceTree = "<group>"; };
+		B20C33731D2DADD1000B2219 /* RecipeDetail_StepCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecipeDetail_StepCell.swift; path = ViewControllers/RecipeDetail_StepCell.swift; sourceTree = "<group>"; };
+		B20C33751D2DCF51000B2219 /* RecipeDetail_SummaryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecipeDetail_SummaryCell.swift; path = ViewControllers/RecipeDetail_SummaryCell.swift; sourceTree = "<group>"; };
 		B224D2411D27388500FE9768 /* AuxiliaryMaterial+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "AuxiliaryMaterial+CoreDataProperties.swift"; path = "DataModel/AuxiliaryMaterial+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		B224D2421D27388500FE9768 /* AuxiliaryMaterial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuxiliaryMaterial.swift; path = DataModel/AuxiliaryMaterial.swift; sourceTree = "<group>"; };
 		B224D2491D273A9E00FE9768 /* MainMaterial+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "MainMaterial+CoreDataProperties.swift"; path = "DataModel/MainMaterial+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -72,8 +78,8 @@
 		A14A28701D2A2A8600B0857C /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				A139B6591D2B321B00480B08 /* RecipeListTableViewController.swift */,
-				A139B65B1D2B3C3E00480B08 /* RecipeListTableViewCell.swift */,
+				B20C33711D2DADA6000B2219 /* RecipeList */,
+				B20C33721D2DADAF000B2219 /* RecipeDetail */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -98,6 +104,25 @@
 				B2A934F01D1F23A900689744 /* RecipeCollection_Single.xcdatamodeld */,
 			);
 			name = DataModel;
+			sourceTree = "<group>";
+		};
+		B20C33711D2DADA6000B2219 /* RecipeList */ = {
+			isa = PBXGroup;
+			children = (
+				A139B6591D2B321B00480B08 /* RecipeListTableViewController.swift */,
+				A139B65B1D2B3C3E00480B08 /* RecipeListTableViewCell.swift */,
+			);
+			name = RecipeList;
+			sourceTree = "<group>";
+		};
+		B20C33721D2DADAF000B2219 /* RecipeDetail */ = {
+			isa = PBXGroup;
+			children = (
+				B20C336B1D2DAC0D000B2219 /* RecipeDetailTableViewController.swift */,
+				B20C33731D2DADD1000B2219 /* RecipeDetail_StepCell.swift */,
+				B20C33751D2DCF51000B2219 /* RecipeDetail_SummaryCell.swift */,
+			);
+			name = RecipeDetail;
 			sourceTree = "<group>";
 		};
 		B2A934DD1D1F23A900689744 = {
@@ -212,11 +237,14 @@
 				A139B65A1D2B321B00480B08 /* RecipeListTableViewController.swift in Sources */,
 				A139B65C1D2B3C3E00480B08 /* RecipeListTableViewCell.swift in Sources */,
 				A1E4E90E1D1F5CA10019F92C /* Flavor.swift in Sources */,
+				B20C336C1D2DAC0D000B2219 /* RecipeDetailTableViewController.swift in Sources */,
+				B20C33761D2DCF51000B2219 /* RecipeDetail_SummaryCell.swift in Sources */,
 				B224D24C1D273A9E00FE9768 /* MainMaterial.swift in Sources */,
 				A1E4E9111D1F5CA10019F92C /* Category+CoreDataProperties.swift in Sources */,
 				B2A934EA1D1F23A900689744 /* AppDelegate.swift in Sources */,
 				A1BD9E8A1D207D2500CBBB81 /* DebugData.swift in Sources */,
 				B224D2441D27388500FE9768 /* AuxiliaryMaterial.swift in Sources */,
+				B20C33741D2DADD1000B2219 /* RecipeDetail_StepCell.swift in Sources */,
 				A1E4E9131D1F5CA10019F92C /* Recipe+CoreDataProperties.swift in Sources */,
 				A1E4E9141D1F5CA10019F92C /* Recipe.swift in Sources */,
 				B2A934F21D1F23A900689744 /* RecipeCollection_Single.xcdatamodeld in Sources */,
