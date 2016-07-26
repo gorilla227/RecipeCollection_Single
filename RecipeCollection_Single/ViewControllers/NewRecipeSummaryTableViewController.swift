@@ -307,7 +307,8 @@ extension NewRecipeSummaryTableViewController: UIImagePickerControllerDelegate, 
     }
     
     func CropImageCompleted(image: UIImage) {
-        imagePicker.dismissViewControllerAnimated(true) { 
+        imagePicker.dismissViewControllerAnimated(true) {
+            self.newRecipe.cover = UIImagePNGRepresentation(image)
             if let summaryCell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) as? NewRecipeSummary_SummaryCell {
                 summaryCell.coverImageView.image = image
             }
