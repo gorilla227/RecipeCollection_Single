@@ -24,11 +24,11 @@ extension Recipe {
     @NSManaged var name: String?
     @NSManaged var subtitle: String?
     @NSManaged var tips: String?
-    @NSManaged var auxiliaryMaterials: NSSet?
+    @NSManaged var auxiliaryMaterials: NSMutableSet?
     @NSManaged var category: Category?
     @NSManaged var difficulty: Difficulty?
     @NSManaged var flavor: Flavor?
-    @NSManaged var mainMaterials: NSSet?
-    @NSManaged var steps: NSOrderedSet?
+    @NSManaged var mainMaterials: NSMutableSet?
+    @NSManaged var steps: NSMutableOrderedSet?
 
 }

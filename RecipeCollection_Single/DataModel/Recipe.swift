@@ -41,18 +41,40 @@ class Recipe: NSManagedObject {
         }
         
         if let mainMaterialsArray = dictionary[Keys.MainMaterials] as? [MainMaterial] {
-            mainMaterials = NSSet(array: mainMaterialsArray)
+            mainMaterials = NSMutableSet(array: mainMaterialsArray)
         }
         if let auxiliaryMaterialsArray = dictionary[Keys.AuxiliaryMaterials] as? [AuxiliaryMaterial] {
-            auxiliaryMaterials = NSSet(array: auxiliaryMaterialsArray)
+            auxiliaryMaterials = NSMutableSet(array: auxiliaryMaterialsArray)
         }
         category = dictionary[Keys.Category] as? Category
         difficulty = dictionary[Keys.Difficulty] as? Difficulty
         flavor = dictionary[Keys.Flavor] as? Flavor
         
         if let stepsArray = dictionary[Keys.Steps] as? [Step] {
-            steps = NSOrderedSet(array: stepsArray)
+            steps = NSMutableOrderedSet(array: stepsArray)
         }
+    }
+    
+    func isRecipeHaveEnoughSummary() -> Bool {
+        guard name != nil else {
+            return false
+        }
+        guard cover != nil else {
+            return false
+        }
+        guard cookingTime != nil else {
+            return false
+        }
+        guard category != nil else {
+            return false
+        }
+        guard difficulty != nil else {
+            return false
+        }
+        guard flavor != nil else {
+            return false
+        }
+        return true
     }
 }
 

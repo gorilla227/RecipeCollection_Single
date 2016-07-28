@@ -26,6 +26,8 @@ class CategoryFlavorSelectionController: UICollectionViewController {
         configureViewFlowLayout()
         collectionView?.allowsSelection = true
         collectionView?.allowsMultipleSelection = false
+        
+        setTitle()
     }
 
     func configureViewFlowLayout() {
@@ -35,6 +37,17 @@ class CategoryFlavorSelectionController: UICollectionViewController {
         let height = width / 2
         collectionViewFlowLayout.itemSize = CGSizeMake(width, height)
         collectionViewFlowLayout.minimumInteritemSpacing = space
+    }
+    
+    private func setTitle() {
+        switch type {
+        case "Category":
+            navigationItem.title = "Category"
+        case "Flavor":
+            navigationItem.title = "Flavor"
+        default:
+            navigationItem.title = nil
+        }
     }
     /*
     // MARK: - Navigation
