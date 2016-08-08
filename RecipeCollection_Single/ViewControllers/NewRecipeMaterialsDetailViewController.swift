@@ -61,9 +61,7 @@ class NewRecipeMaterialsDetailViewController: UITableViewController {
     
     @IBAction func doneButtonOnClicked(sender: AnyObject) {
         guard let (materialName, quantity, unitName) = shouldSave() else {
-            let warningAlert = UIAlertController(title: "Fail", message: "You don't fill all necessary fields, please check again.", preferredStyle: .Alert)
-            let ok = UIAlertAction(title: "OK", style: .Cancel, handler: nil)
-            warningAlert.addAction(ok)
+            let warningAlert = UIAlertController.warningAlert("Fail", message: "You don't fill all necessary fields, please check again.", buttonTitle: "OK")
             presentViewController(warningAlert, animated: true, completion: nil)
             return
         }

@@ -31,14 +31,6 @@ class Recipe: NSManagedObject {
         if let detail = dictionary[Keys.DetailDescription] as? String {
             detailDescription = detail
         }
-        finalImage = dictionary[Keys.FinalImage] as? NSData
-        forPersons = dictionary[Keys.ForPersons] as? NSNumber
-        if let st = dictionary[Keys.Subtitle] as? String {
-            subtitle = st
-        }
-        if let tip = dictionary[Keys.Tips] as? String {
-            tips = tip
-        }
         
         if let mainMaterialsArray = dictionary[Keys.MainMaterials] as? [MainMaterial] {
             mainMaterials = NSMutableSet(array: mainMaterialsArray)
@@ -85,11 +77,9 @@ extension Recipe {
         static let Cover = "cover"
         static let CreationDate = "creationDate"
         static let DetailDescription = "detailDescription"
-        static let FinalImage = "finalImage"
         static let ForPersons = "forPersons"
         static let ModifyDate = "modifyDate"
         static let Subtitle = "subtitle"
-        static let Tips = "tips"
         static let AuxiliaryMaterials = "auxiliaryMaterials"
         static let MainMaterials = "mainMaterials"
         static let Category = "category"

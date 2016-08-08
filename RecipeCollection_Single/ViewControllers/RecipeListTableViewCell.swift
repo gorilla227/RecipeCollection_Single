@@ -12,16 +12,16 @@ import CoreData
 class RecipeListTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subtitleLabel: UILabel!
+    @IBOutlet weak var coverImageView: UIImageView!
 
     func configureCell(recipe: Recipe) {
         titleLabel.text = recipe.name
         subtitleLabel.text = recipe.subtitle
-    }
-
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+        if let coverImageData = recipe.cover, let coverImage = UIImage(data: coverImageData) {
+            coverImageView.image = coverImage
+        } else {
+            coverImageView.image = nil
+        }
     }
 
 }

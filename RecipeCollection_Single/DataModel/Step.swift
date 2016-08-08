@@ -30,6 +30,15 @@ class Step: NSManagedObject {
             recipe = relatedRecipe
         }
     }
+    
+    func convertToDictionary() -> [String: AnyObject] {
+        var dict = [String: AnyObject]()
+        dict[Keys.StepID] = stepID
+        dict[Keys.Detail] = detail
+        dict[Keys.Image] = image
+        dict[Keys.Recipe] = recipe
+        return dict
+    }
 }
 
 extension Step {

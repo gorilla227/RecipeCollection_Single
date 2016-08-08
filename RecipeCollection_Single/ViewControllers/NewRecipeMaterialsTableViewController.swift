@@ -16,10 +16,11 @@ class NewRecipeMaterialsTableViewController: UITableViewController {
 
     @IBOutlet var addMainMaterialButton: UIButton!
     @IBOutlet var addAuxiliaryMaterialButton: UIButton!
+    @IBOutlet weak var nextButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        updateNextButtonEnableStatus()
     }
 
     // MARK: - Table view data source
@@ -91,6 +92,11 @@ class NewRecipeMaterialsTableViewController: UITableViewController {
         }
         return cell
     }
+    
+    private func updateNextButtonEnableStatus() {
+//        nextButton.enabled = (newRecipe?.mainMaterials?.count > 0) && (newRecipe?.auxiliaryMaterials?.count > 0)
+        nextButton.enabled = true
+    }
 
     @IBAction func addMaterialButtonOnClicked(sender: AnyObject) {
         performSegueWithIdentifier("EnterMaterialSegue", sender: sender)
@@ -121,6 +127,7 @@ class NewRecipeMaterialsTableViewController: UITableViewController {
                 break
             }
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            updateNextButtonEnableStatus()
         }
     }
 
@@ -170,6 +177,12 @@ class NewRecipeMaterialsTableViewController: UITableViewController {
                     }
                 }
             }
+        case "NewRecipeSteps":
+            if let destVC = segue.destinationViewController as? NewRecipeStepsTableViewController {
+                destVC.newRecipe = newRecipe
+                destVC.insertManagedObjectContext = insertManagedObjectContext
+            }
+            break
         default:
             break
         }
@@ -209,5 +222,6 @@ extension NewRecipeMaterialsTableViewController: AddEditMaterialDelegate {
             break
         }
         tableView.reloadData()
+        updateNextButtonEnableStatus()
     }
 }

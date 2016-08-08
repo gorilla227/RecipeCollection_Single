@@ -124,43 +124,42 @@ extension AppDelegate: NSFetchedResultsControllerDelegate {
             ams.append(am)
         }
         
-        // Steps
-        let steps = [[Step.Keys.StepID: NSNumber(integer: 1), Step.Keys.Detail: "Step1 Detail"],
-                     [Step.Keys.StepID: NSNumber(integer: 2), Step.Keys.Detail: "Step2 Detail"]]
-        var ss = [Step]()
-        for step in steps {
-            let s = Step(dictionary: step, context: privateMOC)
-            ss.append(s)
-        }
-        
-        // Recipe
-        let recipeDict = [
-            Recipe.Keys.Name: "My first Recipe",
-            Recipe.Keys.CookingTime: "10 mins",
-            Recipe.Keys.CreationDate: NSDate(),
-            Recipe.Keys.DetailDescription: "Detail DescriptionDetail DescriptionDetail DescriptionDetail DescriptionDetail DescriptionDetail DescriptionDetail DescriptionDetail Description",
-            Recipe.Keys.ForPersons: NSNumber(integer: 2),
-            Recipe.Keys.Subtitle: "SUB TITLE",
-            Recipe.Keys.Tips: "TIPS",
-            Recipe.Keys.AuxiliaryMaterials: ams,
-            Recipe.Keys.MainMaterials: mms,
-            Recipe.Keys.Category: cs.first!,
-            Recipe.Keys.Difficulty: ds[1],
-            Recipe.Keys.Flavor: fs.first!,
-            Recipe.Keys.Steps: ss
-        ]
-        let recipe = Recipe(dictionary: recipeDict, context: privateMOC)
-        
-        // Add recipe to other entities
-        for mainMaterial in mms {
-            mainMaterial.recipe = recipe
-        }
-        for auxiliaryMaterial in ams {
-            auxiliaryMaterial.recipe = recipe
-        }
-        for step in ss {
-            step.recipe = recipe
-        }
+//        // Steps
+//        let steps = [[Step.Keys.StepID: NSNumber(integer: 1), Step.Keys.Detail: "Step1 Detail"],
+//                     [Step.Keys.StepID: NSNumber(integer: 2), Step.Keys.Detail: "Step2 Detail"]]
+//        var ss = [Step]()
+//        for step in steps {
+//            let s = Step(dictionary: step, context: privateMOC)
+//            ss.append(s)
+//        }
+//        
+//        // Recipe
+//        let recipeDict = [
+//            Recipe.Keys.Name: "My first Recipe",
+//            Recipe.Keys.CookingTime: "10 mins",
+//            Recipe.Keys.CreationDate: NSDate(),
+//            Recipe.Keys.DetailDescription: "Detail DescriptionDetail DescriptionDetail DescriptionDetail DescriptionDetail DescriptionDetail DescriptionDetail DescriptionDetail Description",
+//            Recipe.Keys.ForPersons: NSNumber(integer: 2),
+//            Recipe.Keys.Subtitle: "SUB TITLE",
+//            Recipe.Keys.AuxiliaryMaterials: ams,
+//            Recipe.Keys.MainMaterials: mms,
+//            Recipe.Keys.Category: cs.first!,
+//            Recipe.Keys.Difficulty: ds[1],
+//            Recipe.Keys.Flavor: fs.first!,
+//            Recipe.Keys.Steps: ss
+//        ]
+//        let recipe = Recipe(dictionary: recipeDict, context: privateMOC)
+//        
+//        // Add recipe to other entities
+//        for mainMaterial in mms {
+//            mainMaterial.recipe = recipe
+//        }
+//        for auxiliaryMaterial in ams {
+//            auxiliaryMaterial.recipe = recipe
+//        }
+//        for step in ss {
+//            step.recipe = recipe
+//        }
         
         saveContext(privateMOC)
     }
@@ -168,6 +167,7 @@ extension AppDelegate: NSFetchedResultsControllerDelegate {
     func mergeToMainManagedObjectContext(notification: NSNotification) {
         print("Merger notification to MainManagedObjectContext")
         mainManagedObjectContext.mergeChangesFromContextDidSaveNotification(notification)
+        saveContext(backgroundSaveManagedObjectContext)
     }
     
     // MARK: NSFetchedResultsControllerDelegate

@@ -18,12 +18,10 @@ extension Recipe {
     @NSManaged var cover: NSData?
     @NSManaged var creationDate: NSDate?
     @NSManaged var detailDescription: String?
-    @NSManaged var finalImage: NSData?
     @NSManaged var forPersons: NSNumber?
     @NSManaged var modifyDate: NSDate?
     @NSManaged var name: String?
     @NSManaged var subtitle: String?
-    @NSManaged var tips: String?
     @NSManaged var auxiliaryMaterials: NSMutableSet?
     @NSManaged var category: Category?
     @NSManaged var difficulty: Difficulty?

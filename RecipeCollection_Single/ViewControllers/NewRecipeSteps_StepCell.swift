@@ -1,20 +1,21 @@
 //
-//  RecipeDetail_StepCell.swift
+//  NewRecipeSteps_StepCell.swift
 //  RecipeCollection_Single
 //
-//  Created by Andy Xu on 7/6/16.
-//  Copyright © 2016 Andy Xu. All rights reserved.
+//  Created by Andy on 16/7/28.
+//  Copyright © 2016年 Andy Xu. All rights reserved.
 //
 
 import UIKit
 
-class RecipeDetail_StepCell: UITableViewCell {
+class NewRecipeSteps_StepCell: UITableViewCell {
     @IBOutlet weak var stepIDLabel: UILabel!
-    @IBOutlet weak var stepImageView: UIImageView!
     @IBOutlet weak var stepDetailLabel: UILabel!
+    @IBOutlet weak var stepImageView: UIImageView!
 
-    func configureStep(step: Step) {
-        stepIDLabel.text = "Step " + step.stepID!.stringValue
+    func configureCell(step: Step) {
+        stepIDLabel.text = "STEP \(step.stepID!)"
+        stepDetailLabel.text = step.detail
         if let imageData = step.image {
             stepImageView.image = UIImage(data: imageData)
             stepImageView.hidden = false
@@ -22,10 +23,7 @@ class RecipeDetail_StepCell: UITableViewCell {
             stepImageView.image = nil
             stepImageView.hidden = true
         }
-        stepDetailLabel.text = step.detail
         
         layoutIfNeeded()
-        print(step.stepID, stepImageView.frame)
     }
-
 }

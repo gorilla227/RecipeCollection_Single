@@ -30,14 +30,14 @@ class RecipeDetailTableViewController: UITableViewController {
         }
         
         var headerViewFrame = tableView.tableHeaderView?.frame
-        headerViewFrame?.size = (tableView.tableHeaderView?.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize))!
+        headerViewFrame?.size.height = imageRatio * tableView.bounds.size.width
         tableView.tableHeaderView?.frame = headerViewFrame!
     }
 
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 6
+        return 4
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -50,10 +50,6 @@ class RecipeDetailTableViewController: UITableViewController {
             return recipe?.auxiliaryMaterials?.count ?? 0
         case 3: // Steps
             return recipe?.steps?.count ?? 0
-        case 4: // Final Image
-            return 1
-        case 5: // Tips
-            return 1
         default:
             return 0
         }
@@ -82,14 +78,6 @@ class RecipeDetailTableViewController: UITableViewController {
             let step = recipe?.steps![indexPath.row] as! Step
             cell.configureStep(step)
             return cell
-        case 4: // Final Image
-            // TODO: Configure Final Cell
-            let cell = tableView.dequeueReusableCellWithIdentifier("FinalCell", forIndexPath: indexPath)
-            return cell
-        case 5: // Tips
-            let cell = tableView.dequeueReusableCellWithIdentifier("TipCell", forIndexPath: indexPath)
-            cell.textLabel?.text = recipe?.tips
-            return cell
         default:
             return UITableViewCell(style: .Default, reuseIdentifier: "DefaultCell")
         }
@@ -103,10 +91,6 @@ class RecipeDetailTableViewController: UITableViewController {
             return "Auxiliary Materials"
         case 3: // Step
             return "Steps"
-        case 4: // Final Image
-            return "Complete Picture"
-        case 5: // Tips
-            return "Cooking Tip"
         default:
             return nil
         }

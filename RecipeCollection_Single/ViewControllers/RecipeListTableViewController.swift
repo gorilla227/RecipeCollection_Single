@@ -32,6 +32,8 @@ class RecipeListTableViewController: UITableViewController {
         } catch {
             fatalError("Failed to fetch Recipe")
         }
+        
+        tableView.rowHeight = imageRatio * tableView.bounds.size.width
     }
 
     // MARK: - Table view data source
@@ -56,7 +58,6 @@ class RecipeListTableViewController: UITableViewController {
         }
         return cell
     }
-
 
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
