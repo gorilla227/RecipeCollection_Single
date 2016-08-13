@@ -20,8 +20,8 @@ class CategoryFlavorSelectionController: UICollectionViewController {
     var addNewTextField: UITextField?
     
     lazy var addNewAlertController: UIAlertController = {
-        let enterView = UIAlertController(title: "Add New \(self.type)", message: nil, preferredStyle: .Alert)
-        enterView.addTextFieldWithConfigurationHandler { (textField: UITextField!) in
+        let addController = UIAlertController(title: "Add New \(self.type)", message: nil, preferredStyle: .Alert)
+        addController.addTextFieldWithConfigurationHandler { (textField: UITextField!) in
             textField.borderStyle = .None
             self.addNewTextField = textField
         }
@@ -30,10 +30,11 @@ class CategoryFlavorSelectionController: UICollectionViewController {
             self.addNewAction()
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
-        enterView.addAction(okAction)
-        enterView.addAction(cancelAction)
+        addController.addAction(okAction)
+        addController.addAction(cancelAction)
+        addController.view.setNeedsLayout()
         
-        return enterView
+        return addController
     }()
     
     lazy var mainManagedObjectContext: NSManagedObjectContext = {
@@ -250,9 +251,8 @@ class CategoryFlavorSelectionController: UICollectionViewController {
         if let textField = addNewTextField {
             textField.text = nil
         }
-        let alertController = addNewAlertController
-        alertController.view.setNeedsLayout()
-        presentViewController(alertController, animated: true, completion: nil)
+        
+        presentViewController(addNewAlertController, animated: true, completion: nil)
     }
 }
 
