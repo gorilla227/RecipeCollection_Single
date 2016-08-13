@@ -28,5 +28,6 @@ class Category: NSManagedObject {
 extension Category {
     struct Keys {
         static let Name = "name"
+        static let Recipe = "recipes"
     }
 }

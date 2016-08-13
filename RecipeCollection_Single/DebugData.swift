@@ -48,7 +48,7 @@ extension AppDelegate: NSFetchedResultsControllerDelegate {
                     return
                 }
             }
-            saveContext(mainManagedObjectContext)
+            AppDelegate.saveContext(mainManagedObjectContext)
         }
     }
     
@@ -161,13 +161,13 @@ extension AppDelegate: NSFetchedResultsControllerDelegate {
 //            step.recipe = recipe
 //        }
         
-        saveContext(privateMOC)
+        AppDelegate.saveContext(privateMOC)
     }
     
     func mergeToMainManagedObjectContext(notification: NSNotification) {
         print("Merger notification to MainManagedObjectContext")
-        mainManagedObjectContext.mergeChangesFromContextDidSaveNotification(notification)
-        saveContext(backgroundSaveManagedObjectContext)
+        AppDelegate.mergeIntoManagedObjectContext(mainManagedObjectContext, withNotification: notification)
+        AppDelegate.saveContext(backgroundSaveManagedObjectContext)
     }
     
     // MARK: NSFetchedResultsControllerDelegate

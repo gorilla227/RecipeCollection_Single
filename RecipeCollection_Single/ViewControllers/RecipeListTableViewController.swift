@@ -72,8 +72,7 @@ class RecipeListTableViewController: UITableViewController {
             let deleteRecipe = fetchedResultsController.objectAtIndexPath(indexPath) as! Recipe
             mainManagedObjectContext.deleteObject(deleteRecipe)
             
-            let appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate
-            appDelegate?.saveContext(mainManagedObjectContext)
+            AppDelegate.saveContext(mainManagedObjectContext)
         }
     }
 

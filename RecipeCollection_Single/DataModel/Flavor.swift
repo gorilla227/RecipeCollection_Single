@@ -28,5 +28,6 @@ class Flavor: NSManagedObject {
 extension Flavor {
     struct Keys {
         static let Name = "name"
+        static let Recipe = "recipes"
     }
 }

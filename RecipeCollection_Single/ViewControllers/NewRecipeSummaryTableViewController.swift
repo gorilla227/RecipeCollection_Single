@@ -123,10 +123,15 @@ class NewRecipeSummaryTableViewController: UITableViewController {
     }
     
     func refreshCategoryFlavor(notification: NSNotification)  {
-        if let _ = notification.object as? Category {
-            tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 1, inSection: 3)], withRowAnimation: .Automatic)
-        } else if let _ = notification.object as? Flavor {
-            tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 2, inSection: 3)], withRowAnimation: .Automatic)
+        if let type = notification.object as? String {
+            switch type {
+            case "Category":
+                tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 1, inSection: 3)], withRowAnimation: .Automatic)
+            case "Flavor":
+                tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 2, inSection: 3)], withRowAnimation: .Automatic)
+            default:
+                break
+            }
         }
     }
 
@@ -254,13 +259,14 @@ class NewRecipeSummaryTableViewController: UITableViewController {
                     if let selectionController = segue.destinationViewController as? CategoryFlavorSelectionController {
                         selectionController.newRecipe = newRecipe
                         selectionController.type = "Category"
-                        selectionController.fetchedResultsController = categoryFRC
+//                        selectionController.fetchedResultsController = categoryFRC
+//                        selectionController.insertManagedObjectContext = insertManagedObjectContext
                     }
                 case 1: // FlavorSelection
                     if let selectionController = segue.destinationViewController as? CategoryFlavorSelectionController {
                         selectionController.newRecipe = newRecipe
                         selectionController.type = "Flavor"
-                        selectionController.fetchedResultsController = flavorFRC
+//                        selectionController.fetchedResultsController = flavorFRC
                     }
                 default:
                     return
@@ -282,12 +288,12 @@ class NewRecipeSummaryTableViewController: UITableViewController {
     }
     
     @IBAction func nextButtonOnClicked(sender: AnyObject) {
-//        if newRecipe.isRecipeHaveEnoughSummary() {
+        if newRecipe.isRecipeHaveEnoughSummary() {
             performSegueWithIdentifier("NewRecipeMaterials", sender: self)
-//        } else {
-//            let warningAlert = UIAlertController.warningAlert("Fail", message: "You don't fill all necessary fields, please check again.", buttonTitle: "OK")
-//            presentViewController(warningAlert, animated: true, completion: nil)
-//        }
+        } else {
+            let warningAlert = UIAlertController.warningAlert("Fail", message: "You don't fill all necessary fields, please check again.", buttonTitle: "OK")
+            presentViewController(warningAlert, animated: true, completion: nil)
+        }
     }
     
     @IBAction func chooseCoverButtonOnClicked(sender: AnyObject) {

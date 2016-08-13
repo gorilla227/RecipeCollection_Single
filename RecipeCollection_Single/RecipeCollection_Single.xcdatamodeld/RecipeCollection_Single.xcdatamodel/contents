@@ -8,6 +8,7 @@
     </entity>
     <entity name="Category" representedClassName=".Category" syncable="YES">
         <attribute name="name" attributeType="String" syncable="YES"/>
+        <relationship name="recipes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Recipe" inverseName="category" inverseEntity="Recipe" syncable="YES"/>
     </entity>
     <entity name="Difficulty" representedClassName=".Difficulty" syncable="YES">
         <attribute name="level" attributeType="Integer 64" minValueString="1" maxValueString="5" defaultValueString="1" indexed="YES" syncable="YES"/>
@@ -15,6 +16,7 @@
     </entity>
     <entity name="Flavor" representedClassName=".Flavor" syncable="YES">
         <attribute name="name" attributeType="String" syncable="YES"/>
+        <relationship name="recipes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Recipe" inverseName="flavor" inverseEntity="Recipe" syncable="YES"/>
     </entity>
     <entity name="MainMaterial" representedClassName=".MainMaterial" syncable="YES">
         <attribute name="name" attributeType="String" syncable="YES"/>
@@ -32,9 +34,9 @@
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="subtitle" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="auxiliaryMaterials" toMany="YES" deletionRule="Nullify" destinationEntity="AuxiliaryMaterial" inverseName="recipe" inverseEntity="AuxiliaryMaterial" syncable="YES"/>
-        <relationship name="category" maxCount="1" deletionRule="Nullify" destinationEntity="Category" syncable="YES"/>
+        <relationship name="category" maxCount="1" deletionRule="Cascade" destinationEntity="Category" inverseName="recipes" inverseEntity="Category" syncable="YES"/>
         <relationship name="difficulty" maxCount="1" deletionRule="Nullify" destinationEntity="Difficulty" syncable="YES"/>
-        <relationship name="flavor" maxCount="1" deletionRule="Nullify" destinationEntity="Flavor" syncable="YES"/>
+        <relationship name="flavor" maxCount="1" deletionRule="Cascade" destinationEntity="Flavor" inverseName="recipes" inverseEntity="Flavor" syncable="YES"/>
         <relationship name="mainMaterials" toMany="YES" deletionRule="Nullify" destinationEntity="MainMaterial" inverseName="recipe" inverseEntity="MainMaterial" syncable="YES"/>
         <relationship name="steps" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Step" inverseName="recipe" inverseEntity="Step" syncable="YES"/>
     </entity>
@@ -46,9 +48,9 @@
     </entity>
     <elements>
         <element name="AuxiliaryMaterial" positionX="8386" positionY="2997" width="128" height="103"/>
-        <element name="Category" positionX="8188" positionY="2457" width="128" height="58"/>
+        <element name="Category" positionX="8188" positionY="2457" width="128" height="75"/>
         <element name="Difficulty" positionX="8514" positionY="2481" width="128" height="73"/>
-        <element name="Flavor" positionX="8107" positionY="2583" width="128" height="60"/>
+        <element name="Flavor" positionX="8107" positionY="2583" width="128" height="75"/>
         <element name="MainMaterial" positionX="8514" positionY="2853" width="128" height="103"/>
         <element name="Recipe" positionX="8341" positionY="2520" width="128" height="255"/>
         <element name="Step" positionX="8118" positionY="2843" width="128" height="105"/>

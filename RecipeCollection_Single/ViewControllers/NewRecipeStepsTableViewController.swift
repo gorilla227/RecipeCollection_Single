@@ -123,8 +123,7 @@ class NewRecipeStepsTableViewController: UITableViewController {
         newRecipe?.creationDate = NSDate()
         
         print(newRecipe)
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        appDelegate.saveContext(insertManagedObjectContext!)
+        AppDelegate.saveContext(insertManagedObjectContext!)
     }
     
     func newRecipeSaved(notification: NSNotification) {

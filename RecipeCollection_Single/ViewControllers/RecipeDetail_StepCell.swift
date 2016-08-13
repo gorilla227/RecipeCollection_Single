@@ -25,7 +25,6 @@ class RecipeDetail_StepCell: UITableViewCell {
         stepDetailLabel.text = step.detail
         
         layoutIfNeeded()
-        print(step.stepID, stepImageView.frame)
     }
 
 }
