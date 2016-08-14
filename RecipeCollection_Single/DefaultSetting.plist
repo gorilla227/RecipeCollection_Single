@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Difficulties</key>
+	<array>
+		<dict>
+			<key>level</key>
+			<integer>1</integer>
+			<key>name</key>
+			<string>Easy</string>
+		</dict>
+		<dict>
+			<key>level</key>
+			<integer>2</integer>
+			<key>name</key>
+			<string>Medium</string>
+		</dict>
+		<dict>
+			<key>level</key>
+			<integer>3</integer>
+			<key>name</key>
+			<string>Hard</string>
+		</dict>
+		<dict>
+			<key>level</key>
+			<integer>4</integer>
+			<key>name</key>
+			<string>Very Hard</string>
+		</dict>
+		<dict>
+			<key>level</key>
+			<integer>5</integer>
+			<key>name</key>
+			<string>Master</string>
+		</dict>
+	</array>
+	<key>Flavors</key>
+	<array>
+		<string>Sweet</string>
+		<string>Spicy</string>
+		<string>Salty</string>
+	</array>
+	<key>Categories</key>
+	<array>
+		<string>Chinese</string>
+		<string>Korean</string>
+		<string>American</string>
+		<string>Japanese</string>
+	</array>
+</dict>
+</plist>

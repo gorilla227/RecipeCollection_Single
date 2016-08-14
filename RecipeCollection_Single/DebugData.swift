@@ -12,64 +12,44 @@ import UIKit
 
 extension AppDelegate: NSFetchedResultsControllerDelegate {
     
-    func sortDescriptors(entityName: String) -> [NSSortDescriptor]? {
-        switch entityName {
-        case "Difficulty":
-            return [NSSortDescriptor(key: Difficulty.Keys.Level, ascending: true)]
-        case "Flavor":
-            return [NSSortDescriptor(key: Flavor.Keys.Name, ascending: true)]
-        case "MainMaterial":
-            return [NSSortDescriptor(key: MainMaterial.Keys.Name, ascending: true)]
-        case "AuxiliaryMaterial":
-            return [NSSortDescriptor(key: AuxiliaryMaterial.Keys.Name, ascending: true)]
-        case "Category":
-            return [NSSortDescriptor(key: Category.Keys.Name, ascending: true)]
-        case "Recipe":
-            return [NSSortDescriptor(key: Recipe.Keys.Name, ascending: true)]
-        case "Step":
-            return [NSSortDescriptor(key: Step.Keys.StepID, ascending: true)]
-        default:
-            return nil
-        }
-    }
-    
     func clearData() {
         if let entitiesByName: [String: NSEntityDescription] = managedObjectModel.entitiesByName {
             for (name, entityDescription) in entitiesByName {
                 let fetchRequest = NSFetchRequest(entityName: name)
                 do {
-                    let fetchResult = try mainManagedObjectContext.executeFetchRequest(fetchRequest) as! [NSManagedObject]
+                    let fetchResult = try backgroundSaveManagedObjectContext.executeFetchRequest(fetchRequest) as! [NSManagedObject]
                     print("ClearData: \(name): \(fetchResult.count)")
                     for result in fetchResult {
-                        mainManagedObjectContext.deleteObject(result)
+                        backgroundSaveManagedObjectContext.deleteObject(result)
                     }
                 } catch {
                     print("ClearData: Fetch result \(name) failed")
                     return
                 }
             }
-            AppDelegate.saveContext(mainManagedObjectContext)
+            AppDelegate.saveContext(backgroundSaveManagedObjectContext)
         }
     }
     
-    func fetchData() {
-        if let entitiesByName: [String: NSEntityDescription] = managedObjectModel.entitiesByName {
-            for (name, entityDescription) in entitiesByName {
-                let fetchRequest = NSFetchRequest(entityName: name)
-                fetchRequest.sortDescriptors = sortDescriptors(name)
-                let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: backgroundSaveManagedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
-                fetchedResultsController.delegate = self
-                
-                do {
-                    try fetchedResultsController.performFetch()
-                } catch {
-                    print("Fetch \(name) failed")
-                    return
-                }
-                print(name, fetchedResultsController.fetchedObjects)
-            }
-        }
-    }
+    /*
+//    func fetchData() {
+//        if let entitiesByName: [String: NSEntityDescription] = managedObjectModel.entitiesByName {
+//            for (name, entityDescription) in entitiesByName {
+//                let fetchRequest = NSFetchRequest(entityName: name)
+//                fetchRequest.sortDescriptors = AppDelegate.sortDescriptors(name)
+//                let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: backgroundSaveManagedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
+//                fetchedResultsController.delegate = self
+//                
+//                do {
+//                    try fetchedResultsController.performFetch()
+//                } catch {
+//                    print("Fetch \(name) failed")
+//                    return
+//                }
+//                print(name, fetchedResultsController.fetchedObjects)
+//            }
+//        }
+//    }
     
     func insertConfigurations() {
         let privateMOC = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
@@ -106,23 +86,23 @@ extension AppDelegate: NSFetchedResultsControllerDelegate {
             ds.append(difficulty)
         }
         
-        // MainMaterials
-        let mainMaterials = [[MainMaterial.Keys.Name: "Beef", MainMaterial.Keys.Quantity: NSNumber(double: 100.0), MainMaterial.Keys.Unit: "g"],
-                             [MainMaterial.Keys.Name: "Tomato", MainMaterial.Keys.Quantity: NSNumber(double: 2.0), MainMaterial.Keys.Unit: "Unit"]]
-        var mms = [MainMaterial]()
-        for mainMaterial in mainMaterials {
-            let mm = MainMaterial(dictionary: mainMaterial, context: privateMOC)
-            mms.append(mm)
-        }
-        
-        // AuxiliaryMaterials
-        let auxiliaryMaterials = [[AuxiliaryMaterial.Keys.Name: "Salt", AuxiliaryMaterial.Keys.Quantity: NSNumber(double: 30.0), AuxiliaryMaterial.Keys.Unit: "mg"],
-                             [AuxiliaryMaterial.Keys.Name: "Sugar", AuxiliaryMaterial.Keys.Quantity: NSNumber(double: 1.0), AuxiliaryMaterial.Keys.Unit: "tbsp"]]
-        var ams = [AuxiliaryMaterial]()
-        for auxiliaryMaterial in auxiliaryMaterials {
-            let am = AuxiliaryMaterial(dictionary: auxiliaryMaterial, context: privateMOC)
-            ams.append(am)
-        }
+//        // MainMaterials
+//        let mainMaterials = [[MainMaterial.Keys.Name: "Beef", MainMaterial.Keys.Quantity: NSNumber(double: 100.0), MainMaterial.Keys.Unit: "g"],
+//                             [MainMaterial.Keys.Name: "Tomato", MainMaterial.Keys.Quantity: NSNumber(double: 2.0), MainMaterial.Keys.Unit: "Unit"]]
+//        var mms = [MainMaterial]()
+//        for mainMaterial in mainMaterials {
+//            let mm = MainMaterial(dictionary: mainMaterial, context: privateMOC)
+//            mms.append(mm)
+//        }
+//        
+//        // AuxiliaryMaterials
+//        let auxiliaryMaterials = [[AuxiliaryMaterial.Keys.Name: "Salt", AuxiliaryMaterial.Keys.Quantity: NSNumber(double: 30.0), AuxiliaryMaterial.Keys.Unit: "mg"],
+//                             [AuxiliaryMaterial.Keys.Name: "Sugar", AuxiliaryMaterial.Keys.Quantity: NSNumber(double: 1.0), AuxiliaryMaterial.Keys.Unit: "tbsp"]]
+//        var ams = [AuxiliaryMaterial]()
+//        for auxiliaryMaterial in auxiliaryMaterials {
+//            let am = AuxiliaryMaterial(dictionary: auxiliaryMaterial, context: privateMOC)
+//            ams.append(am)
+//        }
         
 //        // Steps
 //        let steps = [[Step.Keys.StepID: NSNumber(integer: 1), Step.Keys.Detail: "Step1 Detail"],
@@ -169,10 +149,5 @@ extension AppDelegate: NSFetchedResultsControllerDelegate {
         AppDelegate.mergeIntoManagedObjectContext(mainManagedObjectContext, withNotification: notification)
         AppDelegate.saveContext(backgroundSaveManagedObjectContext)
     }
-    
-    // MARK: NSFetchedResultsControllerDelegate
-    func controllerDidChangeContent(controller: NSFetchedResultsController) {
-        print(controller.fetchRequest.entityName)
-        print(controller.fetchedObjects)
-    }
+    */
 }

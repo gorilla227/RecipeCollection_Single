@@ -51,6 +51,7 @@
 		B2A934F71D1F23A900689744 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2A934F51D1F23A900689744 /* LaunchScreen.storyboard */; };
 		B2AF6F8E1D4829E700631801 /* NewRecipeMaterialsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2AF6F8D1D4829E700631801 /* NewRecipeMaterialsTableViewController.swift */; };
 		B2C264BB1D3B095F00BD613D /* CategoryFlavorSelectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C264BA1D3B095F00BD613D /* CategoryFlavorSelectionController.swift */; };
+		B2EBF84E1D5FDE6E001E2EE6 /* DefaultSetting.plist in Resources */ = {isa = PBXBuildFile; fileRef = B2EBF84D1D5FDE6E001E2EE6 /* DefaultSetting.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -100,6 +101,7 @@
 		B2A934F81D1F23A900689744 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B2AF6F8D1D4829E700631801 /* NewRecipeMaterialsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewRecipeMaterialsTableViewController.swift; path = ViewControllers/NewRecipeMaterialsTableViewController.swift; sourceTree = "<group>"; };
 		B2C264BA1D3B095F00BD613D /* CategoryFlavorSelectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategoryFlavorSelectionController.swift; path = ViewControllers/CategoryFlavorSelectionController.swift; sourceTree = "<group>"; };
+		B2EBF84D1D5FDE6E001E2EE6 /* DefaultSetting.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DefaultSetting.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -234,6 +236,7 @@
 				B2A934ED1D1F23A900689744 /* Main.storyboard */,
 				B2A934F51D1F23A900689744 /* LaunchScreen.storyboard */,
 				B2A934F81D1F23A900689744 /* Info.plist */,
+				B2EBF84D1D5FDE6E001E2EE6 /* DefaultSetting.plist */,
 			);
 			path = RecipeCollection_Single;
 			sourceTree = "<group>";
@@ -320,6 +323,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B2A934F71D1F23A900689744 /* LaunchScreen.storyboard in Resources */,
+				B2EBF84E1D5FDE6E001E2EE6 /* DefaultSetting.plist in Resources */,
 				B28F82F81D3720040042BC4E /* Assets.xcassets in Resources */,
 				A19A86CB1D45E73D009763E2 /* CropImageViewController.xib in Resources */,
 				B2A934EF1D1F23A900689744 /* Main.storyboard in Resources */,

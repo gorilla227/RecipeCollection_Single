@@ -21,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
 //        clearData()
 //        insertConfigurations()
+        initializeDefaultSettings()
         
         return true
     }
@@ -107,26 +108,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("BackgroundMOC: \(managedObjectContext)")
         return managedObjectContext
     }()
+}
 
-    // MARK: - Core Data Saving support
-
-//    func saveContext(moc: NSManagedObjectContext) {
-//        moc.performBlock {
-//            if moc.hasChanges {
-//                do {
-//                    print("SaveContext: \(moc)")
-//                    try moc.save()
-//                } catch {
-//                    // Replace this implementation with code to handle the error appropriately.
-//                    // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-//                    let nserror = error as NSError
-//                    NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
-//                    abort()
-//                }
-//            }
-//        }
-//    }
-    
+// MARK: - Core Data Support Functions
+extension AppDelegate {
     class func saveContext(moc: NSManagedObjectContext) {
         moc.performBlock {
             if moc.hasChanges {
@@ -148,6 +133,67 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         context.performBlock { 
             context.mergeChangesFromContextDidSaveNotification(notification)
         }
+    }
+    
+    class func sortDescriptors(entityName: String) -> [NSSortDescriptor]? {
+        switch entityName {
+        case "Difficulty":
+            return [NSSortDescriptor(key: Difficulty.Keys.Level, ascending: true)]
+        case "Flavor":
+            return [NSSortDescriptor(key: Flavor.Keys.Name, ascending: true)]
+        case "MainMaterial":
+            return [NSSortDescriptor(key: MainMaterial.Keys.Name, ascending: true)]
+        case "AuxiliaryMaterial":
+            return [NSSortDescriptor(key: AuxiliaryMaterial.Keys.Name, ascending: true)]
+        case "Category":
+            return [NSSortDescriptor(key: Category.Keys.Name, ascending: true)]
+        case "Recipe":
+            return [NSSortDescriptor(key: Recipe.Keys.Name, ascending: true)]
+        case "Step":
+            return [NSSortDescriptor(key: Step.Keys.StepID, ascending: true)]
+        default:
+            return nil
+        }
+    }
+}
+
+// MARK: - Initialize Default Settings
+extension AppDelegate {
+    func initializeDefaultSettings() {
+        let keyOfInitializedStatus = "IsDefaultSettingInitialized"
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+//        userDefaults.removeObjectForKey(keyOfInitializedStatus)
+        
+        if !userDefaults.boolForKey(keyOfInitializedStatus) {
+            if let defaultSettingFile = NSBundle.mainBundle().pathForResource("DefaultSetting", ofType: "plist"),
+                let setting = NSDictionary(contentsOfFile: defaultSettingFile) {
+                
+                // Flavors
+                if let flavorNames = setting.objectForKey("Flavors") as? [String] {
+                    for flavorName in flavorNames {
+                        Flavor(name: flavorName, context: backgroundSaveManagedObjectContext)
+                    }
+                }
+                
+                // Categories
+                if let categoryNames = setting.objectForKey("Categories") as? [String] {
+                    for categoryName in categoryNames {
+                        Category(name: categoryName, context: backgroundSaveManagedObjectContext)
+                    }
+                }
+                
+                // Difficulties
+                if let difficulties = setting.objectForKey("Difficulties") as? [[String: AnyObject]] {
+                    for difficulty in difficulties {
+                        Difficulty(dictionary: difficulty, context: backgroundSaveManagedObjectContext)
+                    }
+                }
+                
+                AppDelegate.saveContext(backgroundSaveManagedObjectContext)
+                userDefaults.setBool(true, forKey: keyOfInitializedStatus)
+            }
+        }
+        
     }
 }
 

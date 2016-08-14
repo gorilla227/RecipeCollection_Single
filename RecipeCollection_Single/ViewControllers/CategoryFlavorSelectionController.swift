@@ -44,14 +44,7 @@ class CategoryFlavorSelectionController: UICollectionViewController {
     
     lazy var fetchedResultsController: NSFetchedResultsController = {
         let fetchRequest = NSFetchRequest(entityName: self.type)
-        switch self.type {
-        case "Category":
-            fetchRequest.sortDescriptors = [NSSortDescriptor(key: Category.Keys.Name, ascending: true)]
-        case "Flavor":
-            fetchRequest.sortDescriptors = [NSSortDescriptor(key: Flavor.Keys.Name, ascending: true)]
-        default:
-            break
-        }
+        fetchRequest.sortDescriptors = AppDelegate.sortDescriptors(self.type)
         
         let frc = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.mainManagedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
         return frc
@@ -126,12 +119,11 @@ class CategoryFlavorSelectionController: UICollectionViewController {
             return false
         } else {
             let fetchRequest = NSFetchRequest(entityName: type)
+            fetchRequest.sortDescriptors = AppDelegate.sortDescriptors(type)
             switch type {
             case "Category":
-                fetchRequest.sortDescriptors = [NSSortDescriptor(key: Category.Keys.Name, ascending: true)]
                 fetchRequest.predicate = NSPredicate(format: "\(Category.Keys.Name) == %@", name)
             case "Flavor":
-                fetchRequest.sortDescriptors = [NSSortDescriptor(key: Flavor.Keys.Name, ascending: true)]
                 fetchRequest.predicate = NSPredicate(format: "\(Flavor.Keys.Name) == %@", name)
             default:
                 break
